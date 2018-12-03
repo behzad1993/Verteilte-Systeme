@@ -1,0 +1,71 @@
+Ü1: Auswahl geeigneter Protokolle auf Transportebene
+Ermitteln Sie, welches Protokoll auf Transportebene für die nachfolgenden Applikationen am
+besten geeignet sein könnte:
+1. Echtzeit-Streaming
+- UDP, speziell entwickelte fuers Streaming SCTP, DCCP
+
+2. File Transfer (in einem lokalen Netzwerk)
+- FTP bzw TCP, zustandsbehaftet
+
+3. File Transfer (unter Beteiligung des Internets)
+- wie 2.
+
+4. Ein Service zur Uhrensynchronisation für alle Knoten in einem lokalen Netzwerk
+- NTP, basiert auf UDP
+
+5. Eine eCommerce-Applikation
+- TCP
+
+6. Eine lokale File-Sharing-Applikation bei der Clients verschiedene Server automatisch lokalisieren / erkennen müssen
+- TCP
+
+
+Ü2: Socket-Primitives
+Ermitteln Sie, welche der folgenden Sequenzen an Socket-Primitiven Teilmengen für SocketPrimitiven
+bei der Interprozesskommunikation sind und um welches Protokoll (TCP oder UDP) es
+sich handelt!
+
+1. create socket (client-seitig), sendto (client-seitig), create socket (server-seitig), recvfrom (serverseitig),
+close (server-seitig), close (client-seitig)
+- UDP
+
+2. create socket (client-seitig), create socket (server-seitig), bind (server-seitig), listen (client-seitig),
+connect (client-seitig), accept (server-seitig), send (client-seitig), recv (server-seitig), shutdown
+(server-seitig), shutdown (client-seitig), close (server-seitig), close (client-seitig)
+- TCP
+
+3. create socket (client-seitig), create socket (server-seitig), bind (server-seitig), sendto (clientseitig),
+recvfrom (server-seitig), close (server-seitig), close (client-seitig)
+- UDP
+
+4. create socket (client-seitig), create socket (server-seitig), bind (server-seitig), listen (serverseitig),
+connect (client-seitig), accept (server-seitig), send (server-seitig), recv (client-seitig),
+shutdown (server-seitig), shutdown (client-seitig), close (server-seitig), close (client-seitig)
+- TCP
+
+5. create socket (client-seitig), create socket (server-seitig), bind (server-seitig), listen (serverseitig),
+connect (server-seitig), accept (client-seitig), send (server-seitig), recv (client-seitig),
+shutdown (server-seitig), shutdown (client-seitig), close (server-seitig), close (client-seitig)
+- TCP
+
+6. create socket (client-seitig), create socket (server-seitig), sendto (client-seitig), bind (serverseitig),
+recvfrom (server-seitig), close (server-seitig), close (client-seitig)
+- UDP
+
+
+
+Ü3: Port-Konfigurationen
+Gegeben seien die folgenden fiktiven Header-Konfigurationen für Port-Nummern bei der
+Interprozesskommunikation zwischen zwei Computern:
+Fragen:
+
+1. Welche dieser Konfigurationen wird für UDP funktionieren?
+- alle
+
+2. Welche allgemeine Anforderung an Interprozesskommunikation kann hieraus abgeleitet
+werden?
+- nicht gleiche Send bzw Receive Ports
+
+3. Welche der Konfigurationen funktioniert in dem Falle, dass die Prozesse, welche über
+UDP miteinander kommunizieren, auf einem Rechner lokalisiert sind?
+- A, C, E, F

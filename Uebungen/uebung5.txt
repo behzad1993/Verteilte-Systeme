@@ -1,0 +1,28 @@
+Ü1: Probleme in der Public Cloud
+Welche Probleme (aus User-Sicht) assoziieren Sie mit der Public Cloud?
+
+. Nutzer gehören nicht dem Unternehmen / der Organisation des Cloud-Service Anbieters (Service Provider) an.
+. Verfuegbarkeit von Diensten
+. Einflussmoeglichkeiten auf den SP
+
+
+
+Ü2: Web-Service Discovery
+Web Services offerieren Möglichkeiten zum Austausch / zur Interaktion
+zwischen den Entitäten Dienstnutzer (requester) und Dienstanbieter
+(provider). Voraussetzung hierfür ist, dass sich beide auch kennen und von
+einander wissen. Beschreiben Sie ganz allgemein Möglichkeiten, wie sich
+requester und provider auffinden / kennen lernen können.
+
+. 
+
+
+Ü3: SOAP vs. REST bei Firewalls
+Warum kann ein SOAP-request für die Konfiguration und Administration
+einer Firewall im Vergleich zu einem REST-request problematisch sein?
+
+. SOAP: Sinn und Zweck der in der Schnittstelle definierten Operationen benötigt WSDL;
+. REST benötigt nur URI der Ressource (zur Bearbeitung der Ressourcen werden HTTP-Methoden verwendet)
+. Zum Senden von Nachrichten koennen beliebige Transportprotokolle verwendet werden. In der Praxis wird jedoch HTML verwendet. Mittels HTTPS ist die Verschluesselung der Uebertragung moeglich. Aber keine End to End Verschluesserlung. 
+
+
