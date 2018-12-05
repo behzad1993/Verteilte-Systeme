@@ -1,0 +1,9 @@
+1. Warum sind Kommunikationsdienste auf der Transportebene oftmals zum Aufbau verteilter Anwendungen ungeeignet?
+Volle Bandbreite kann nicht genutzt werden, da immer wieder die Verbindung aufgebaut und getrennt wird. 
+
+Sie bieten kaum Verteilungstranzsparenz an, was bedeutet, dass Anwednungsentwickler_innen der Immpl. von Komm. sehr viel Aufmerksamkeit schneken muessen. Fueht heaeufig zu nicht guten Loesgungen
+
+2. Angenommen, ein Client führt einen asynchronen RPC zu einem Server durch und wartet anschließend, bis der Server ein Ergebnis unter Verwendung eines weiteren asynchronen RPC zurückgibt. Ist dieser Ansatz derselbe, wenn der Client einen normalen RPC durchführt? Was passiert, wenn wir die asynchronen durch synchrone RPCs ersetzen?
+
+Nein. Weil der Server dem Aufrufer eine weitere Antwort gibt 
+
