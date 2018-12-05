@@ -25,7 +25,7 @@ public class Server extends UnicastRemoteObject implements Hello {
     public static void main(String[] args) {
         try {
             Server server = new Server();
-             Hello helloStub = (Hello) UnicastRemoteObject.exportObject(server, 0);
+            Hello helloStub = (Hello) UnicastRemoteObject.exportObject(server, 0);
             Registry registry = LocateRegistry.getRegistry(1111);
             registry.bind("Hello", helloStub);
 
