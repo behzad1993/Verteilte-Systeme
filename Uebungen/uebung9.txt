@@ -1,0 +1,35 @@
+Ü1:
+
+Bewertung: Prozesse vs. Threads
+
+Wenn Domänentransitionen auch beim Threading „teuer“ sind, warum nutzt man Threads überhaupt (einfache Prozesse könnten ja ebenso genutzt werden)?
+
+- koennen leichter miteinander kommunizieren
+	+ gesamter namespace muss nicht kopiert werden
+- Threads zu erzeugen nicht aufwaendig wie Prozesse zu duplizieren
+	+ daher perfomanter als einzelne Prozessee
+- dafuer schwieriger zu programmieren
+
+
+
+Ü2: Evaluation von Prozesszuständen (single-core Prozessor)
+
+Gegeben sei ein single-core Prozessor mit drei aktiven Prozessen {A, B, C}.Bewerten Sie die nachfolgenden Kombinationen der Prozesszustände dahingehend, ob diese auftreten können oder nicht. Begründen Sie ihre Antwort!
+
+a:	✔
+b:	✔
+c:	✗
+d:	✔
+e:	✔
+f:	✔
+
+
+Ü3: Zustandssequenzen
+
+Gegeben sei ein Prozess mit den folgenden Zustandssequenzen:
+
+a:	✗
+b:	✔
+c:	✗
+d:	✗
+e:	✗
