@@ -1,43 +1,55 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Parkhaus {
 
     private int maxCapacity;
     private int freeCapacity;
+    private Queue<Auto> queue;
+
+    private int _nextCarId = 0;
+
 
     public Parkhaus(int maxCapacity) {
         this.maxCapacity = maxCapacity;
         this.freeCapacity = maxCapacity;
+        this.queue = new LinkedList<>();
     }
 
-    public void enter(Auto auto) throws InterruptedException {
-        System.out.println("Auto " + auto.getIdFromCar() + " fährt ein");
-    }
+    public synchronized void enter(Auto auto) throws InterruptedException {
+        int currentCarId = _nextCarId++;
+        queue.add(auto);
 
-    public void leave(Auto auto) {
-        System.out.println("Auto " + auto.getIdFromCar() + " fährt aus");
-    }
-
-    public Boolean addCar() {
-        if (this.freeCapacity > 0) {
-            this.freeCapacity--;
-            return true;
+//        if (freeCapacity == 0) {
+//            System.out.println("CANT ENTER. FULL");
+//            return;
+//        }
+        // TODO: WHILE
+        try {
+            if (_nextCarId == auto.getIdFromCar())
+            wait();
+        } catch (Exception e) {
+            System.out.println("ERROR");
+            e.printStackTrace();
+            return;
         }
-        return false;
-    }
 
-    public Boolean removeCar() {
-        if (this.freeCapacity < maxCapacity) {
-            this.freeCapacity++;
-            return true;
+        Auto actualCar = queue.poll();
+//        actualCar.notify();
+        notifyAll();
+        if (actualCar.getIdFromCar() > 9) {
+            System.out.println("Auto " + actualCar.getIdFromCar() + " fährt   EIN");
+        } else {
+            System.out.println("Auto " + actualCar.getIdFromCar() + " fährt    EIN");
         }
-        return false;
     }
 
-    public int getmaxCapacity() {
-        return maxCapacity;
-    }
-
-    public int getfreeCapacity() {
-        return freeCapacity;
+    public synchronized void leave(Auto auto) {
+        if (auto.getIdFromCar() > 9) {
+            System.out.println("Auto " + auto.getIdFromCar() + " fährt          AUS");
+        } else {
+            System.out.println("Auto " + auto.getIdFromCar() + " fährt           AUS");
+        }
     }
 }
 

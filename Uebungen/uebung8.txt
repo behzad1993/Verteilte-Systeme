@@ -7,3 +7,8 @@ Sie bieten kaum Verteilungstranzsparenz an, was bedeutet, dass Anwednungsentwick
 
 Nein. Weil der Server dem Aufrufer eine weitere Antwort gibt 
 
+
+apixu.com/pricing.aspx
+
+weatherbit.io/pricing
+

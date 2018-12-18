@@ -8,7 +8,7 @@ Wenn Domänentransitionen auch beim Threading „teuer“ sind, warum nutzt man 
 	+ gesamter namespace muss nicht kopiert werden
 - Threads zu erzeugen nicht aufwaendig wie Prozesse zu duplizieren
 	+ daher perfomanter als einzelne Prozessee
-- dafuer schwieriger zu programmieren
+
 
 
 
@@ -17,11 +17,12 @@ Wenn Domänentransitionen auch beim Threading „teuer“ sind, warum nutzt man 
 Gegeben sei ein single-core Prozessor mit drei aktiven Prozessen {A, B, C}.Bewerten Sie die nachfolgenden Kombinationen der Prozesszustände dahingehend, ob diese auftreten können oder nicht. Begründen Sie ihre Antwort!
 
 a:	✔
-b:	✔
+b:	✔ Selten!
 c:	✗
 d:	✔
-e:	✔
-f:	✔
+e:	✔ Selten!
+f:	✔ Moeglich!
+
 
 
 Ü3: Zustandssequenzen

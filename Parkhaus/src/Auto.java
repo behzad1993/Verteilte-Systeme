@@ -18,17 +18,15 @@ public class Auto extends Thread {
         return id;
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
         try {
             Thread.sleep(anfahrt);
             parkhaus.enter(this);
             Thread.sleep(parkzeit);
             parkhaus.leave(this);
-        }
-        catch(InterruptedException ie) {
-            throw new AssertionError(ie);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
-
-
 }
