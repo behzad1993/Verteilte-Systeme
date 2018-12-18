@@ -1,10 +1,9 @@
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
 
-public class MainServer extends Thread{
+public class MainServer extends Thread {
 
     private DatagramSocket socket;
     private CSVReader csvReader;
@@ -23,12 +22,16 @@ public class MainServer extends Thread{
         while (true) {
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             try {
-                socket.receive(packet);
-            } catch (IOException e) {
-                e.printStackTrace();
+                new Thread(new TemperatureServer(socket, packet, csvReader)).start();
+            } catch (OutOfMemoryError e) {
+                // TODO: building too many threads.
             }
-            new Thread(new TemperatureServer(socket, packet, csvReader)).start();
         }
+    }
+
+    public static void main(String[] args) {
+        new MainServer().start();
+        System.out.println("Server started!");
     }
 }
 

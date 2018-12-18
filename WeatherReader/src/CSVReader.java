@@ -12,8 +12,6 @@ public class CSVReader {
     private static CSVReader csvReader = new CSVReader();
     private static HashMap <LocalDate, TreeMap<LocalTime, Float>> tempData;
 
-//    private static
-
     private CSVReader() {
         tempData = new HashMap<>();
         readCSV();
@@ -31,7 +29,7 @@ public class CSVReader {
     }
 
     private static void readCSV() {
-        String csvFile = "/Users/behzad1993/Documents/HTW/Komponentenbasierte_Entwicklung/KBEWiSe18/WeatherReader/csv/history_export_2018-12-17T21_51_40.csv";
+        String csvFile = "/Users/behzad1993/Documents/HTW/Verteilte-Systeme/WeatherReader/csv/history_export_2018-12-17T21_51_40.csv";
         BufferedReader br = null;
         String line;
         String cvsSplitBy = ";";

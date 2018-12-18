@@ -28,7 +28,7 @@ public class TemperatureServer extends Thread{
         running = true;
 
         while (running) {
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            this.packet = new DatagramPacket(buf, buf.length);
             try {
                 socket.receive(packet);
                 InetAddress address = packet.getAddress();

@@ -25,28 +25,35 @@ public class TemperatureClient {
     }
 
     public TreeMap<LocalTime, Float> sendDate(LocalDate localDate) {
-//        String received = null;
-//        HashMap <LocalTime, Float> temperatures = null;
         TreeMap<LocalTime, Float> temperatures = null;
-        byte b = 0;
         try {
             buf = localDate.toString().getBytes();
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
             socket.send(packet);
             packet = new DatagramPacket(buffer, buffer.length);
-            socket.receive(packet);
 
-            byte[] receivedData = packet.getData();
+            socket.setSoTimeout(5000);
 
-            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(receivedData));
-            temperatures = (TreeMap<LocalTime, Float>) ois.readObject();
-            ois.close();
-
+            while (true) {
+                try {
+                    socket.receive(packet);
+                    byte[] receivedData = packet.getData();
+                    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(receivedData));
+                    temperatures = (TreeMap<LocalTime, Float>) ois.readObject();
+                    ois.close();
+                    printResult(temperatures);
+                } catch (SocketTimeoutException e) {
+                    System.out.println("Timeout reached!");
+                    socket.close();
+                }
+                socket.close();
+            }
+        } catch (SocketException e) {
+            System.out.println("Client session ended.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        printResult(temperatures);
-        return  temperatures;
+        return temperatures;
     }
 
 
@@ -112,6 +119,8 @@ public class TemperatureClient {
         String averageString = String.format("%.2f", average);
         stringBuilder.append(averageString);
         stringBuilder.append(degr);
+        stringBuilder.append("\n");
+        stringBuilder.append("\n");
 
         String result = stringBuilder.toString();
 
@@ -124,6 +133,48 @@ public class TemperatureClient {
         for (Map.Entry<LocalTime, Float> localTimeFloatEntry : entrySet) {
             sum += localTimeFloatEntry.getValue();
         }
-        return sum/entrySet.size();
+        return sum / entrySet.size();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("If you want to start the client, pleas press 'Y'. To Abort press any key. ");
+        String ready = scanner.nextLine();
+        boolean start = false;
+        if (ready.equals("y") || ready.equals("Y")) {
+            start = true;
+        }
+
+        while (start) {
+
+            System.out.println("Enter date in format YYYY-MM-DD");
+            String date = scanner.nextLine();
+
+            System.out.println("You entered the date: " + date);
+
+            LocalDate localDate;
+            try {
+                localDate = LocalDate.parse(date);
+            } catch (Exception e) {
+                System.out.println("Date was in a wrong format. Again.");
+                continue;
+            }
+            System.out.println("Sending request to server.");
+            TemperatureClient client = new TemperatureClient();
+
+            client.sendDate(localDate);
+
+            System.out.println("If you want to start again, pleas press 'Y'. To Abort press any key. ");
+            ready = scanner.nextLine();
+
+            if (ready.equals("y") || ready.equals("Y")) {
+                start = true;
+            } else {
+                start = false;
+            }
+
+            System.out.println("Closing client..!");
+        }
     }
 }
